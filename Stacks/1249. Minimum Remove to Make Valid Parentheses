@@ -1,0 +1,20 @@
+class Solution:
+    def minRemoveToMakeValid(self, s: str) -> str:
+        opn, clo = 0, 0
+        stack = []
+        li = list(s)
+        
+        for i in range(0, len(s)):
+            if li[i] == "(" :
+                stack.append(i)
+            elif li[i] == ")":
+                if stack:
+                    stack.pop()
+                else:
+                    li[i] = ""
+        
+        # to remove unpaired opening braces
+        for i in stack:
+            li[i] = ""
+            
+        return "".join(li)
